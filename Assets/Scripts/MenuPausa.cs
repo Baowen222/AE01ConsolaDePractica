@@ -34,7 +34,7 @@ public class MenuPausa : MonoBehaviour
         Time.timeScale = 0f;
         panelPausa.SetActive(true);
 
-        // Selecciona el botón Continuar
+        
         EventSystem.current.SetSelectedGameObject(botonContinuar);
     }
 
@@ -69,7 +69,7 @@ public class MenuPausa : MonoBehaviour
 
     void CambioMando(InputDevice dispositivo, InputDeviceChange cambio)
     {
-        // Si se desconecta un mando, pausa el juego
+        // Si se desconecta mando se pausa
         if (dispositivo is Gamepad &&
             cambio == InputDeviceChange.Removed)
         {
@@ -79,4 +79,17 @@ public class MenuPausa : MonoBehaviour
             }
         }
     }
+
+
+    void OnApplicationFocus(bool tieneFoco)
+    {
+        Debug.Log("Foco de la ventana: " + tieneFoco);
+
+        if (!tieneFoco)
+        {
+            Pausar();
+        }
+    }
+
+
 }
